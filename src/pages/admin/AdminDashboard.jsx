@@ -62,14 +62,22 @@ function AdminDashboard() {
           ?.filter(o => o.payment_status === 'paid')
           .reduce((sum, o) => sum + parseFloat(o.total_amount), 0) || 0
 
-      // Statistik hari ini
+      // Statistik hari ini - hanya pesanan yang dibuat hari ini
       const today = new Date()
       today.setHours(0, 0, 0, 0)
       const todayOrders =
-        orders?.filter(o => new Date(o.created_at) >= today && o.payment_status === 'paid').length || 0
+        orders?.filter(o => {
+          const orderDate = new Date(o.created_at)
+          orderDate.setHours(0, 0, 0, 0)
+          return orderDate.getTime() === today.getTime() && o.payment_status === 'paid'
+        }).length || 0
       const todayRevenue =
         orders
-          ?.filter(o => new Date(o.created_at) >= today && o.payment_status === 'paid')
+          ?.filter(o => {
+            const orderDate = new Date(o.created_at)
+            orderDate.setHours(0, 0, 0, 0)
+            return orderDate.getTime() === today.getTime() && o.payment_status === 'paid'
+          })
           .reduce((sum, o) => sum + parseFloat(o.total_amount), 0) || 0
 
       // Produk baru bulan ini
@@ -227,10 +235,13 @@ function AdminDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-2xl font-extrabold text-gray-900 leading-tight mb-1">
-                Rp {new Intl.NumberFormat('id-ID').format(stats.total_revenue)}
+                {stats.today_orders} barang
+              </p>
+              <p className="text-sm text-gray-600 font-bold mb-1">
+                Rp {new Intl.NumberFormat('id-ID').format(stats.today_revenue)}
               </p>
               <p className="text-xs text-gray-600 font-bold uppercase tracking-wider">
-                Pesanan Diterima
+                Pesanan Diterima Hari Ini
               </p>
             </div>
           </div>
