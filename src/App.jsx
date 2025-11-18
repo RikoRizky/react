@@ -17,6 +17,7 @@ import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminProductManagement from './pages/admin/AdminProductManagement'
 import AdminOrderManagement from './pages/admin/AdminOrderManagement'
 import AdminPaidOrders from './pages/admin/AdminPaidOrders'
+import AdminAccountManagement from './pages/admin/AdminAccountManagement'
 
 // Layouts
 import Layout from './components/Layout'
@@ -82,6 +83,7 @@ function App() {
           <Route path="products" element={<AdminProductManagement />} />
           <Route path="orders" element={<AdminOrderManagement />} />
           <Route path="paid" element={<AdminPaidOrders />} />
+          <Route path="accounts" element={<AdminAccountManagement />} />
         </Route>
 
 
