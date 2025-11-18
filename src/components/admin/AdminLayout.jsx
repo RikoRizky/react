@@ -13,7 +13,7 @@ function AdminLayout() {
     const result = await signOut()
     if (result.success) {
       toast.success('Logout berhasil!')
-      navigate('/admin/login')
+      navigate('/')
     } else {
       toast.error(result.error || 'Logout gagal')
     }

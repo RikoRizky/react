@@ -316,12 +316,13 @@ function RecentOrders({ recentOrders, formatDate }) {
             const isPaid = order.payment_status === 'paid'
 
             return (
-              <div
+              <Link
                 key={order.id}
-                className={`p-6 border-b border-gray-100 last:border-b-0 transition-all duration-200 ${
+                to={isPaid ? `/admin/paid?order_id=${order.id}` : `/admin/orders?order_id=${order.id}`}
+                className={`block p-6 border-b border-gray-100 last:border-b-0 transition-all duration-200 ${
                   isPaid
-                    ? 'bg-gradient-to-r from-green-50 to-white hover:from-green-100 hover:to-white'
-                    : 'bg-gradient-to-r from-yellow-50 to-white hover:from-yellow-100 hover:to-white'
+                    ? 'bg-gradient-to-r from-green-50 to-white hover:from-green-100 hover:to-white cursor-pointer'
+                    : 'bg-gradient-to-r from-yellow-50 to-white hover:from-yellow-100 hover:to-white cursor-pointer'
                 }`}
               >
                 <div className="flex items-start justify-between flex-wrap gap-3">
@@ -356,7 +357,7 @@ function RecentOrders({ recentOrders, formatDate }) {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             )
           })
         ) : (
