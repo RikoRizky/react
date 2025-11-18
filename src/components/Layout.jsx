@@ -34,12 +34,39 @@ function Layout() {
     setIsMobileMenuOpen(false)
   }
 
+  // Hidden admin access - triple click on logo
+  const [logoClickCount, setLogoClickCount] = useState(0)
+  const [logoClickTimeout, setLogoClickTimeout] = useState(null)
+
+  const handleLogoClick = () => {
+    setLogoClickCount(prev => prev + 1)
+
+    if (logoClickTimeout) {
+      clearTimeout(logoClickTimeout)
+    }
+
+    const timeout = setTimeout(() => {
+      setLogoClickCount(0)
+    }, 1000) // Reset after 1 second
+
+    setLogoClickTimeout(timeout)
+
+    if (logoClickCount + 1 >= 3) {
+      // Navigate to admin login
+      window.location.href = '/admin/login'
+      setLogoClickCount(0)
+      if (logoClickTimeout) {
+        clearTimeout(logoClickTimeout)
+      }
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <header className="bg-white border-b sticky top-0 z-50">
         <nav className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link to="/products" className="flex items-center gap-2" onClick={closeMobileMenu}>
+            <Link to="/products" className="flex items-center gap-2" onClick={() => { closeMobileMenu(); handleLogoClick(); }}>
               <span className="inline-flex h-8 w-8 items-center justify-center rounded bg-blue-600 text-white font-bold text-sm sm:text-base">
                 TK
               </span>
