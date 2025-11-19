@@ -1,3 +1,0 @@
-// Configuration file - Copy values to .env file
-// VITE_SUPABASE_URL=https://cjyxiahyycakcuhgswat.supabase.co
-// VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNqeXhpYWh5eWNha2N1aGdzd2F0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI1MDE1MjIsImV4cCI6MjA3ODA3NzUyMn0.j-TvyDpgOmyF84S4aUCDur3v-rYfhvFSYsD93pp89I0
